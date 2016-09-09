@@ -1,7 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Application{
-  public static main(String args[]){
+  public static void main(String args[]) throws FileNotFoundException{
   // hi jared\
 	  //hello nick
 	  System.out.println("Please select which language type the file is.\n1: Language 1\n2: Language 2\n3: Language 3\n4: Language 4");
