@@ -9,7 +9,8 @@ public class Tokenizer{
 	}
 		
 	public char getCurrentToken(){
-		return tokens.charAt(location);
+		current = tokens.charAt(location);
+		return current;
 	}
 	public void getNextToken(){
 		location++;
