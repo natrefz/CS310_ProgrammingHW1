@@ -2,10 +2,7 @@ public class Tokenizer{
 	
 	String tokens;
 	char current;
-	int location = 0;
-	
-	
-	
+	int location = 0;	
 	
 	public Tokenizer(String s){
 		tokens = s;
