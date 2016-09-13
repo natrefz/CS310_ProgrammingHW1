@@ -35,7 +35,7 @@ public class Application{
 	  }
 	  
 	  String s = "test";
-	  Language l = new Language(s,selection);
+	  Language l = new Language(selection);
 	  System.out.println("Language"+selection+" was selected processing file now");
 	  
 	  
