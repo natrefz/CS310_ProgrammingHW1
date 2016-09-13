@@ -21,11 +21,12 @@ public class Application{
 		  }
 	  }
 	  done = false;
+	  Scanner file = null;
 	  while(done == false){
 	  System.out.println("Please enter the location of the file");
 	  String filename = in.next();
 	  try{
-	  Scanner file = new Scanner(new File(filename));
+	  file = new Scanner(new File(filename));
 	  done = true;
 	  }
 	  catch(FileNotFoundException e){
@@ -34,10 +35,15 @@ public class Application{
 	  }
 	  }
 	  
-	  String s = "test";
 	  Language l = new Language(selection);
-	  System.out.println("Language"+selection+" was selected processing file now");
+	  System.out.println("Language "+selection+" was selected processing file now");
 	  
+	  System.out.println("Language number: "+selection);
+	  
+	  while(file.hasNextLine()){
+	  String s = file.nextLine();
+	  System.out.printf("String testing: %10.15s"+"  |  Result: "+l.parseExp(s)+"\n",s);
+	  }
 	  
 
   }
