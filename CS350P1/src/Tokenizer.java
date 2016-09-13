@@ -1,11 +1,11 @@
 public class Tokenizer{
 	
-	String tokens;
-	char current;
-	int location = 0;	
+	private String tokens;
+	private char current;
+	private int location = 0;	
 	
 	public Tokenizer(String s){
-		tokens = s;
+		tokens = s + "$";
 		current = tokens.charAt(location);
 	}
 		
@@ -18,6 +18,6 @@ public class Tokenizer{
 		return getCurrentToken();
 	}
 	public boolean endOfString(){
-		return (location==tokens.length());
+		return (current=='$');
 	}
 }
