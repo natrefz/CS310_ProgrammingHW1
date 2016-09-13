@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Application{
   public static void main(String args[]){
 
-	  System.out.println("Please select which language type the file is.\n1: Language 1\n2: Language 2\n3: Language 3\n4: Language 4");
 	  
 	  Scanner in = new Scanner(System.in);
 	  boolean done = false;
@@ -34,23 +33,11 @@ public class Application{
 		  done = false;
 	  }
 	  }
-	  if(selection==1){
-		  Language1 l1 = new Language1();
-		  System.out.println("Language 1 was selected processing file now");
-	  }
-	  else if(selection==2){
-		  Language2 l2 = new Language2();
-		  System.out.println("Language 2 was selected processing file now");
-	  }
-	  else if(selection==3){
-		  Language3 l3 = new Language3();
-		  System.out.println("Language 3 was selected processing file now");
-
-	  }
-	  else{
-		  Language4 l4 = new Language4();
-		  System.out.println("Language 4 was selected processing file now");
-	  }
+	  
+	  String s = "test";
+	  Language l = new Language(s,selection);
+	  System.out.println("Language"+selection+" was selected processing file now");
+	  
 	  
 
   }
