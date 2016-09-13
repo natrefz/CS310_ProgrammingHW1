@@ -12,8 +12,9 @@ public class Tokenizer{
 		current = tokens.charAt(location);
 		return current;
 	}
-	public void getNextToken(){
+	public char getNextToken(){
 		location++;
+		return getCurrentToken();
 	}
 	public boolean endOfString(){
 		return (location==tokens.length());
