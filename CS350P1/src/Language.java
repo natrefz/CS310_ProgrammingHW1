@@ -10,9 +10,10 @@ public class Language{
 	
 	
 	public boolean parseExp(String s){
-		expression = s;
+		tok = new Tokenizer(s);
 		if(selection ==1){
-			Language1_S();
+			return S1();
+			
 		}
 		else if(selection ==2){
 			
@@ -26,42 +27,52 @@ public class Language{
 		return false;
 	}
 	public boolean S1()
-	{	
-		if (tok.endOfString())
-			return true;
+	{			
 		if (tok.getCurrentToken() == 'a')
 		{
-			tok.getNextToken();
-			if (tok.endOfString())
-				return false;			
-			S1();
-			return true;
+			tok.getNextToken();		
+			if(S1()){
+				if(tok.getNextToken()=='c'){
+					if(B1()){
+						return true;
+					}
+				}
+			}
 		}
 		if (tok.getCurrentToken() == 'b')
 		{
 			tok.getNextToken();
-			S1();
-		}		
-		if (tok.getCurrentToken() == 'c')
-		{
-			tok.getNextToken();
-			if (tok.endOfString())
-				return false;
-		}	
-		if (tok.getCurrentToken() == 'd')
-		{
-			
-		}	
+			return true;
+		}
+		if(A1()){
+			return true;
+		}
 		return false;
 	}
 	public boolean A1()
 	{
-		
+		if(tok.getCurrentToken()=='c'){
+			tok.getNextToken();
+			if(A1()){
+				return true;
+			}
+		}
+		if(tok.getCurrentToken()=='d'){
+			return true;
+		}
 		return false;
 	}
 	public boolean B1()
 	{
-		
+		if(tok.getCurrentToken()=='d'){
+			return true;
+		}
+		if(tok.getCurrentToken()=='a'){
+			tok.getNextToken();
+			if(A1()){
+			return true;
+			}
+		}
 		return false;
 	}
 }
