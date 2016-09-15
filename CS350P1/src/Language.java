@@ -16,15 +16,14 @@ public class Language{
 			
 		}
 		else if(selection ==2){
-			
+			return assign();
 		}
 		else if(selection ==3){
-			
+			return A2();
 		}
 		else{
-			
+			return S4();
 		}
-		return false;
 	}
 	public boolean S1()
 	{			
@@ -143,7 +142,7 @@ public class Language{
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 	public boolean S4(){
 		if(A4()){
@@ -171,6 +170,7 @@ public class Language{
 	}
 	public boolean B4(){
 		if(tok.getCurrentToken()=='a'){
+			tok.getNextToken();
 			if(B4()){
 				return true;
 			}
