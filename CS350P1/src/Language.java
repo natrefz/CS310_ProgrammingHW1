@@ -8,23 +8,25 @@ public class Language{
 		selection = i;
 	}
 	
-	
+	//Parse int take the string and runs the appropriate 
+	//identifier method on it based on the selection
 	public boolean parseExp(String s){
 		tok = new Tokenizer(s);
-		if(selection ==1){
+		if(selection ==1){//Language 1
 			return S1();
 			
 		}
-		else if(selection ==2){
+		else if(selection ==2){ // Language 2
 			return assign();
 		}
-		else if(selection ==3){
-			return A2();
+		else if(selection ==3){//Language 3
+			return A3();
 		}
-		else{
+		else{//Language 4
 			return S4();
 		}
 	}
+	//Language 1 methods
 	public boolean S1()
 	{			
 		if (tok.getCurrentToken() == 'a')
@@ -77,6 +79,7 @@ public class Language{
 		}
 		return false;
 	}
+	//Language 2 methods
 	public boolean assign(){
 		
 		if(ID()){
@@ -119,24 +122,25 @@ public class Language{
 		}
 		return false;
 	}
-	public boolean A2(){
+	//Language 3 methods
+	public boolean A3(){
 		if(tok.getCurrentToken()=='a'){
 			tok.getNextToken();
-			if(A2()){
+			if(A3()){
 				if(tok.getNextToken()=='c'){
 					return true;
 				}
 			}
 		}
-		if(B2()){
+		if(B3()){
 			return true;
 		}
 		return false;
 	}
-	public boolean B2(){
+	public boolean B3(){
 		if(tok.getCurrentToken()=='b'){
 			tok.getNextToken();
-			if(B2()){
+			if(B3()){
 				if(tok.getNextToken()=='c'){
 					return true;
 				}
@@ -144,6 +148,7 @@ public class Language{
 		}
 		return true;
 	}
+	//Language 4 methods
 	public boolean S4(){
 		if(A4()){
 			if(tok.getNextToken()=='a'){
