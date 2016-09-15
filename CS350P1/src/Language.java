@@ -32,23 +32,25 @@ public class Language{
 		if (tok.getCurrentToken() == 'a')
 		{
 			tok.getNextToken();		
-			if(S1()){
-				if(tok.getNextToken()=='c'){
+			if(S1())
+			{
+				if(tok.getNextToken()=='c')
+				{
 					tok.getNextToken();
-					if(B1()){
-						return true;
+					if(B1())
+					{
+						tok.getNextToken();
+						if (tok.endOfString())
+							return true;
 					}
 				}
-			}
-			else{
-				return false;
-			}
+			}			
 		}
-		if (tok.getCurrentToken() == 'b')
+		else if (tok.getCurrentToken() == 'b')
 		{
 			return true;
 		}
-		if(A1()){
+		else if(A1()){
 			return true;
 		}
 		return false;
@@ -61,7 +63,7 @@ public class Language{
 				return true;
 			}
 		}
-		if(tok.getCurrentToken()=='d'){
+		else if(tok.getCurrentToken()=='d'){
 			return true;
 		}
 		return false;
@@ -71,7 +73,7 @@ public class Language{
 		if(tok.getCurrentToken()=='d'){
 			return true;
 		}
-		if(tok.getCurrentToken()=='a'){
+		else if(tok.getCurrentToken()=='a'){
 			tok.getNextToken();
 			if(A1()){
 			return true;

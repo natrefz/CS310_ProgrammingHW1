@@ -13,6 +13,7 @@ public class Application{
 	  while(done ==false){
 		  System.out.println("Please select which language type the file is.\n1: Language 1\n2: Language 2\n3: Language 3\n4: Language 4");
 		  selection = in.nextInt();
+		  in.nextLine();
 		  if(selection >4 || selection <1){
 			  System.out.println("Not a valid selection please try again");
 		  }
@@ -24,7 +25,7 @@ public class Application{
 	  Scanner file = null;
 	  while(done == false){
 	  System.out.println("Please enter the location of the file");
-	  String filename = in.next();
+	  String filename = in.nextLine();
 	  try{
 	  file = new Scanner(new File(filename));
 	  done = true;
