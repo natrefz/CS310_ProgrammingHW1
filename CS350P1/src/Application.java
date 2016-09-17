@@ -8,8 +8,10 @@ public class Application{
 	  
 	  Scanner in = new Scanner(System.in);
 	  boolean done = false;
+	  boolean doAnotherFile = false;
 	  int selection = 0;
-			  
+		  do
+	  {		  
 	  while(done ==false){
 		  System.out.println("Please select which language type the file is.\n1: Language 1\n2: Language 2\n3: Language 3\n4: Language 4");
 		  selection = in.nextInt();
@@ -40,12 +42,25 @@ public class Application{
 	  System.out.println("Language "+selection+" was selected processing file now");
 	  
 	  System.out.println("Language number: "+selection);
-	  
-	  while(file.hasNextLine()){
-	  String s = file.nextLine();
-	  System.out.printf("String testing: %10.15s"+"  |  Result: "+l.parseExp(s)+"\n",s);
+
+		  while(file.hasNextLine())
+		  {
+			  String s = file.nextLine();
+			  System.out.printf("String testing: %10.15s"+"  |  Result: "+l.parseExp(s)+"\n",s);
+		  }
+		  
+	  System.out.println();
+	  System.out.println("Would you like to test another file? (y/n)");
+	  String doagain = in.nextLine();
+	  if (doagain.equalsIgnoreCase("y"))
+	  {
+		  doAnotherFile = true;
 	  }
-	  
+	  else 
+		  doAnotherFile = false;
+	  done=false;
+	  } while(doAnotherFile);
+	  System.out.println("Program terminated. \nThank you.");
 
   }
 }

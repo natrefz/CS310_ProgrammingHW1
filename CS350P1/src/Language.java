@@ -89,7 +89,8 @@ public class Language{
 			if(tok.getCurrentToken()=='='){
 				tok.getNextToken();
 				if(expr()){
-					return true;
+					if (tok.endOfString())
+						return true;
 				}
 			}
 		}
@@ -97,17 +98,25 @@ public class Language{
 	}
 	public boolean expr(){
 		if(digit()){
-			if(tok.getNextToken()=='+'){
-				if(expr()){
+			tok.getNextToken();
+			if(tok.getCurrentToken()=='+')
+			{
+				tok.getNextToken();
+				if(expr())
+				{
 					return true;
 				}
 			}
-			if(tok.getNextToken()=='-'){
-				if(expr()){
+			else if(tok.getCurrentToken()=='-')
+			{
+				tok.getNextToken();
+				if(expr())
+				{
 					return true;
 				}
 			}
-			return true;
+			else if (tok.endOfString())
+				return true;
 		}
 		return false;
 	}
@@ -119,7 +128,8 @@ public class Language{
 	}
 	public boolean digit(){
 		int digit = Character.getNumericValue(tok.getCurrentToken());
-		if(digit>=0||digit<10){
+		if(digit>=0&&digit<10)
+		{
 			return true;
 		}
 		return false;
