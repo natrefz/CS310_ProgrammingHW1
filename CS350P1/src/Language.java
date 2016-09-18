@@ -189,41 +189,42 @@ public class Language{
 		return false;
 	}
 	//Language 4 methods
-	public boolean S4(){
-		if(A4()){
-			if(tok.getNextToken()=='a'){
+		public boolean S4(){
+			if(!A4()){
+				if(tok.getCurrentToken()=='a'){
+					tok.getNextToken();
+					System.out.println(tok.getCurrentToken());
+					if(!B4()){			
+						if(tok.getCurrentToken()=='b'){
+							tok.getNextToken();
+							if(tok.endOfString()){
+							return true;
+							}
+						}
+					}	
+				}
+			}
+			return false;
+		}
+		public boolean A4(){
+			if(tok.getCurrentToken()!='b') return true;
+			if(tok.getCurrentToken()=='b'){
+				tok.getNextToken();
+				if(A4()){
+					return false;
+				}
+			}
+			return false;
+		}
+		public boolean B4(){
+			if(tok.getCurrentToken()!='a') return true;
+			if(tok.getCurrentToken()=='a'){
 				tok.getNextToken();
 				if(B4()){
-					if(tok.getNextToken()=='a'){
-						return true;
-					}
-				}	
+					return false;
+				}
 			}
+			return false;
 		}
-		return false;
-	}
-	public boolean A4(){
-		if(A4()){
-			if(tok.getNextToken()=='b'){
-				return true;
-			}
-		}
-		if(tok.getCurrentToken()=='b'){
-			return true;
-		}
-		return false;
-	}
-	public boolean B4(){
-		if(tok.getCurrentToken()=='a'){
-			tok.getNextToken();
-			if(B4()){
-				return true;
-			}
-		}
-		if(tok.getCurrentToken()=='a'){
-			return true;
-		}
-		return false;
-	}
 }
 
