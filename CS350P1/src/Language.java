@@ -20,7 +20,7 @@ public class Language{
 			return assign();
 		}
 		else if(selection ==3){//Language 3
-			return A3();
+			return S3();
 		}
 		else{//Language 4
 			return S4();
@@ -135,30 +135,58 @@ public class Language{
 		return false;
 	}
 	//Language 3 methods
-	public boolean A3(){
-		if(tok.getCurrentToken()=='a'){
-			tok.getNextToken();
-			if(A3()){
-				if(tok.getNextToken()=='c'){
-					return true;
-				}
+	public boolean S3()
+	{
+		if(A3())
+		{
+			if (tok.endOfString())
+			{
+				return true;
 			}
 		}
-		if(B3()){
+		return false;
+	}
+	public boolean A3(){
+		if(tok.getCurrentToken()=='a')
+		{
+			tok.getNextToken();
+			if(A3()) //if this point is passed, there are no more a's or b's
+			{
+				if (tok.getCurrentToken()=='c')
+				{
+					tok.getNextToken();
+					return true;
+				}
+				else 
+					return false;
+			}
+		}
+		else if(B3())
+		{
+			return true;
+		}
+		else if (tok.getCurrentToken()=='c')
+		{
 			return true;
 		}
 		return false;
 	}
-	public boolean B3(){
-		if(tok.getCurrentToken()=='b'){
+	public boolean B3()
+	{
+		if(tok.getCurrentToken()=='b')
+		{
 			tok.getNextToken();
-			if(B3()){
-				if(tok.getNextToken()=='c'){
-					return true;
+			if(B3())
+			{
+				if (tok.getCurrentToken()=='c')
+				{					tok.getNextToken();
+				return true;
 				}
 			}
 		}
-		return true;
+		else if (tok.getCurrentToken()=='c')
+			return true;
+		return false;
 	}
 	//Language 4 methods
 	public boolean S4(){

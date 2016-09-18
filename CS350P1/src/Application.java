@@ -6,7 +6,8 @@ public class Application{
   public static void main(String args[]){
 
 	  
-	  Scanner in = new Scanner(System.in);
+	  @SuppressWarnings("resource")
+	Scanner in = new Scanner(System.in);
 	  boolean done = false;
 	  boolean doAnotherFile = false;
 	  int selection = 0;
@@ -58,7 +59,7 @@ public class Application{
 	  }
 	  else 
 		  doAnotherFile = false;
-	  done=false;
+	  done = false;
 	  } while(doAnotherFile);
 	  System.out.println("Program terminated. \nThank you.");
 
