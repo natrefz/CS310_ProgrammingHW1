@@ -1,83 +1,95 @@
-public class Language {
-
+public class Language{
+	
 	int selection;
 	String expression = "";
 	Tokenizer tok = new Tokenizer(expression);
-
-	public Language(int i) {
+	
+	public Language(int i){
 		selection = i;
 	}
-
-	// Parse int take the string and runs the appropriate
-	// identifier method on it based on the selection
-	public boolean parseExp(String s) {
+	
+	//Parse int take the string and runs the appropriate 
+	//identifier method on it based on the selection
+	public boolean parseExp(String s){
 		tok = new Tokenizer(s);
-		if (selection == 1) {// Language 1
-			return S1();
-
-		} else if (selection == 2) { // Language 2
+		if(selection ==1){//Language 1
+			boolean s1 = S1();
+			tok.getNextToken();
+			return s1 && tok.endOfString();
+			
+		}
+		else if(selection ==2){ // Language 2
 			return assign();
-		} else if (selection == 3) {// Language 3
+		}
+		else if(selection ==3){//Language 3
 			return S3();
-		} else {// Language 4
+		}
+		else{//Language 4
 			return S4();
 		}
 	}
-
-	// Language 1 methods
-	public boolean S1() {
-		if (tok.getCurrentToken() == 'a') {
-			tok.getNextToken();
-			if (S1()) {
-				if (tok.getNextToken() == 'c') {
+	//Language 1 methods
+	public boolean S1()	
+	{
+		if (tok.getCurrentToken() == 'a')
+		{
+			tok.getNextToken(); 
+			if(S1())
+			{
+				tok.getNextToken();
+				if(tok.getCurrentToken()=='c')
+				{
 					tok.getNextToken();
-					if (B1()) {
-						tok.getNextToken();
-						if (tok.endOfString())
-							return true;
+					if(B1())
+					{
+						return true;
 					}
 				}
-			}
-		} else if (tok.getCurrentToken() == 'b') {
+			}			
+		}
+		else if (tok.getCurrentToken() == 'b')
+		{
 			return true;
-		} else if (A1()) {
+		}
+		else if(A1()){
 			return true;
 		}
 		return false;
 	}
-
-	public boolean A1() {
-		if (tok.getCurrentToken() == 'c') {
+	public boolean A1()
+	{
+		if(tok.getCurrentToken()=='c'){
 			tok.getNextToken();
-			if (A1()) {
-				return true;
-			}
-		} else if (tok.getCurrentToken() == 'd') {
-			return true;
-		}
-		return false;
-	}
-
-	public boolean B1() {
-		if (tok.getCurrentToken() == 'd') {
-			return true;
-		} else if (tok.getCurrentToken() == 'a') {
-			tok.getNextToken();
-			if (A1()) {
+			if(A1()){
 				return true;
 			}
 		}
+		else if(tok.getCurrentToken()=='d'){
+			return true;
+		}
 		return false;
 	}
-
-	// Language 2 methods
-	public boolean assign() {
-
-		if (ID()) {
+	public boolean B1()
+	{
+		if(tok.getCurrentToken()=='d'){
+			return true;
+		}
+		else if(tok.getCurrentToken()=='a'){
+			tok.getNextToken(); // 7tok=c
+			if(A1()){
+			return true;
+			}
+		}
+		return false;
+	}
+	//Language 2 methods
+	public boolean assign(){
+		
+		if(ID()){
 			tok.getNextToken();
-			if (tok.getCurrentToken() == '=') {
+			if(tok.getCurrentToken()=='='){
 				tok.getNextToken();
-				if (expr()) {
+				if(expr()){
 					if (tok.endOfString())
 						return true;
 				}
@@ -85,85 +97,99 @@ public class Language {
 		}
 		return false;
 	}
-
-	public boolean expr() {
-		if (digit()) {
+	public boolean expr(){
+		if(digit()){
 			tok.getNextToken();
-			if (tok.getCurrentToken() == '+') {
+			if(tok.getCurrentToken()=='+')
+			{
 				tok.getNextToken();
-				if (expr()) {
+				if(expr())
+				{
 					return true;
 				}
-			} else if (tok.getCurrentToken() == '-') {
+			}
+			else if(tok.getCurrentToken()=='-')
+			{
 				tok.getNextToken();
-				if (expr()) {
+				if(expr())
+				{
 					return true;
 				}
-			} else if (tok.endOfString())
+			}
+			else if (tok.endOfString())
 				return true;
 		}
 		return false;
 	}
-
-	public boolean ID() {
-		if (tok.getCurrentToken() == 'a' || tok.getCurrentToken() == 'b') {
+	public boolean ID(){
+		if(tok.getCurrentToken() =='a'||tok.getCurrentToken()=='b'){
 			return true;
 		}
 		return false;
 	}
-
-	public boolean digit() {
+	public boolean digit(){
 		int digit = Character.getNumericValue(tok.getCurrentToken());
-		if (digit >= 0 && digit < 10) {
+		if(digit>=0&&digit<10)
+		{
 			return true;
 		}
 		return false;
 	}
-
-	// Language 3 methods
-	public boolean S3() {
-		if (A3()) {
-			if (tok.endOfString()) {
+	//Language 3 methods
+	public boolean S3()
+	{
+		if(A3())
+		{
+			if (tok.endOfString())
+			{
 				return true;
 			}
 		}
 		return false;
 	}
-
-	public boolean A3() {
-		if (tok.getCurrentToken() == 'a') {
+	public boolean A3(){
+		if(tok.getCurrentToken()=='a')
+		{
 			tok.getNextToken();
-			if (A3()) // if this point is passed, there are no more a's or b's
+			if(A3()) //if this point is passed, there are no more a's or b's
 			{
-				if (tok.getCurrentToken() == 'c') {
+				if (tok.getCurrentToken()=='c')
+				{
 					tok.getNextToken();
 					return true;
-				} else
+				}
+				else 
 					return false;
 			}
-		} else if (B3()) {
+		}
+		else if(B3())
+		{
 			return true;
-		} else if (tok.getCurrentToken() == 'c') {
+		}
+		else if (tok.getCurrentToken()=='c')
+		{
 			return true;
 		}
 		return false;
 	}
-
-	public boolean B3() {
-		if (tok.getCurrentToken() == 'b') {
+	public boolean B3()
+	{
+		if(tok.getCurrentToken()=='b')
+		{
 			tok.getNextToken();
-			if (B3()) {
-				if (tok.getCurrentToken() == 'c') {
-					tok.getNextToken();
-					return true;
+			if(B3())
+			{
+				if (tok.getCurrentToken()=='c')
+				{					tok.getNextToken();
+				return true;
 				}
 			}
-		} else if (tok.getCurrentToken() == 'c')
+		}
+		else if (tok.getCurrentToken()=='c')
 			return true;
 		return false;
 	}
-
-	// Language 4 methods
+		// Language 4 methods
 	public boolean S4() {
 		if (!A4()) {
 			if (tok.getCurrentToken() == 'a') {
@@ -205,3 +231,4 @@ public class Language {
 		return false;
 	}
 }
+
