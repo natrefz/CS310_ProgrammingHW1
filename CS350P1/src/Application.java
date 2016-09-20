@@ -25,7 +25,7 @@ public class Application {
 			done = false;
 			Scanner file = null;
 			while (done == false) {
-				System.out.println("Please enter the location of the file");
+				System.out.println("Please enter the full path location of the file");
 				String filename = in.nextLine();
 				try {
 					file = new Scanner(new File(filename));

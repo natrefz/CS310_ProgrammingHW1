@@ -22,7 +22,8 @@ public class Language{
 			return assign();
 		}
 		else if(selection ==3){//Language 3
-			return S3();
+			boolean a3 =A3();
+			return a3 && tok.endOfString();
 		}
 		else{//Language 4
 			return S4();
@@ -136,17 +137,6 @@ public class Language{
 		return false;
 	}
 	//Language 3 methods
-	public boolean S3()
-	{
-		if(A3())
-		{
-			if (tok.endOfString())
-			{
-				return true;
-			}
-		}
-		return false;
-	}
 	public boolean A3(){
 		if(tok.getCurrentToken()=='a')
 		{
