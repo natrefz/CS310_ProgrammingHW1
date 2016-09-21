@@ -1,3 +1,11 @@
+/* 
+ * Jared Bartrug
+ * Nicolas Trefz
+ * Due: 9-22-2016
+ * CS310 Programming assignment #1
+ */
+
+
 public class Language{
 	
 	int selection;
@@ -30,6 +38,7 @@ public class Language{
 		}
 	}
 	//Language 1 methods
+	
 	public boolean S1()	
 	{
 		if (tok.getCurrentToken() == 'a')
@@ -84,6 +93,8 @@ public class Language{
 		return false;
 	}
 	//Language 2 methods
+	//Description of language: one variable (a or b) on the left, then one =, then at least one digit (1-9) followed by 
+	// zero or more (+ digit) or (- digit)
 	public boolean assign(){
 		
 		if(ID()){
@@ -137,6 +148,8 @@ public class Language{
 		return false;
 	}
 	//Language 3 methods
+	// Language Description: zero or more a's followed by zero or more b's followed by c's 
+	// The number of c's always is equal to the amount of a's and b's
 	public boolean A3(){
 		if(tok.getCurrentToken()=='a')
 		{
@@ -180,6 +193,7 @@ public class Language{
 		return false;
 	}
 		// Language 4 methods
+	// Language Description: one or more b's, followed by two or more a's, followed by exactly one a
 	public boolean S4() {
 		if (!A4()) {
 			if (tok.getCurrentToken() == 'a') {

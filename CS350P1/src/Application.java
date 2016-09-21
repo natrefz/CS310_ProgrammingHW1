@@ -1,3 +1,10 @@
+/* 
+ * Jared Bartrug
+ * Nicolas Trefz
+ * Due: 9-22-2016
+ * CS310 Programming assignment #1
+ */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -26,6 +33,8 @@ public class Application {
 			Scanner file = null;
 			while (done == false) {
 				System.out.println("Please enter the full path location of the file");
+				// If the file isn't in the project, its full path location can be entered. For example:
+				// C:\Users\Nick\Documents\TestLang1.txt
 				String filename = in.nextLine();
 				try {
 					file = new Scanner(new File(filename));
@@ -36,14 +45,16 @@ public class Application {
 				}
 			}
 
-			Language l = new Language(selection);
+			Language lang = new Language(selection);	// instantiates a Language object for the language selected above
 			System.out.println("Language " + selection + " was selected processing file now");
 
 			System.out.println("Language number: " + selection);
 
 			while (file.hasNextLine()) {
 				String s = file.nextLine();
-				System.out.printf("String testing: %10.15s" + "  |  Result: " + l.parseExp(s) + "\n", s);
+				// parseExp() determines whether or not the string is valid
+				System.out.printf("String testing: %10.15s" + "  |  Result: " + lang.parseExp(s) + "\n", s);	
+				
 			}
 
 			System.out.println();
